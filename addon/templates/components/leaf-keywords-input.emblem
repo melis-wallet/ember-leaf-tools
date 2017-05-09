@@ -1,0 +1,8 @@
+.textarea.input.form-control.clearfix id=containerId class="{{if valid 'valid'}}"
+= if has-feedback
+  span.form-control-feedback
+    i.fa.fa-square
+  = if (and has-error (not hasSuggestions))
+    .help-block = error
+yield this suggestions
+

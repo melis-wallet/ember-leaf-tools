@@ -1,0 +1,12 @@
+= if dropdown
+
+  | foo
+= else
+  = if icon
+    span.btn-label.icon class=icon
+  = if currentValue.icon
+    i.icon class=currentValue.icon
+  = else if currentValue.label
+    = currentValue.label
+  = else
+    = currentValue

@@ -1,0 +1,5 @@
+= leaf-panel icon='fa fa-cog large' title='UI Elements' caption='Here a list of UI elements available'
+.list-group
+  = each model as |element|
+    = link-to element.route class='list-group-item'
+      = element.title

@@ -1,0 +1,17 @@
+
+.sly {
+
+  .frame { padding: 0; }
+  .frame .slidee { margin: 0; padding: 0; width: 100%; list-style: none; }
+  //.frame .slidee li { float: left; margin: 0 0 5px 0; padding: 0; width: 100%; height: 100px; }
+
+  .scrollbar { width: 4px; height: 100%; position: absolute; right: 2px; top: 0;}
+  .scrollbar .handle {
+    border-radius: 2px;
+    width: 100%;
+    height: 100px; /* overriden if dynamicHandle: 1 */
+    opacity: 0.5;
+    background: #888;
+  }
+
+}

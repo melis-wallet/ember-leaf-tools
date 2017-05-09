@@ -1,0 +1,15 @@
+.row
+  .col-md-6
+    = leaf-panel simple-header=true title='Multiple Toggler' icon='fa fa-leaf'
+      .panel-body
+        = leaf-multiple-toggler options=options value=selected on-change=(action (mut selected)) initalize=true
+        '
+        = leaf-multiple-toggler options=options value=selected on-change=(action (mut selected)) initalize=true icon='fa fa-map-marker'
+        hr
+        = selected.label
+
+    = leaf-panel simple-header=true title='Multiple Toggler labels' icon='fa fa-leaf'
+      .panel-body
+        = leaf-multiple-toggler options=optionsLabels value=selectedLabels on-change=(action (mut selectedLabels)) initalize=true icon='fa fa-flag-o'
+        hr
+        = selectedLabels.label

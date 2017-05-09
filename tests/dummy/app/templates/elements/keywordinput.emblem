@@ -1,0 +1,17 @@
+.row
+  .col-md-6
+    = leaf-panel simple-header=true title='keyword Input' icon='fa fa-leaf'
+      .panel-body
+        = leaf-multiple-toggler options=keys value=currentKeys on-change=(action (mut currentKeys)) initalize=true class='btn-xs' icon='fa fa-list'
+        hr
+
+        = leaf-keywords-input source=allKeys value=selectedKeys on-value-change='keysChanged' as | ki |
+          = leaf-keywords-suggest [
+            suggestions=ki.firstSuggestions
+            active=ki.suggestActive
+            on-add=(action 'addSuggestion' target=ki)
+            on-escape=(action 'suggestClosed' target=ki)
+            on-blur=(action 'suggestClosed' target=ki)
+          ]
+
+        = selectedKeys

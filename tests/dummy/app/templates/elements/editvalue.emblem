@@ -1,0 +1,48 @@
+.row
+  .col-md-6
+    = leaf-panel simple-header=true title='Editable value' icon='fa fa-leaf'
+      .panel-body
+        = leaf-editable-value value=myValue on-change='valueChanged'
+
+    = leaf-panel simple-header=true title='Editable validatable value with simple value' icon='fa fa-leaf'
+      .panel-body
+        = leaf-editable-validated value=myValue on-change='valueChanged'
+
+
+  .col-md-6
+    = leaf-panel simple-header=true title='Editable value w/ validations' icon='fa fa-leaf'
+      .panel-body
+        = leaf-editable-validated model=this property='myOtherValue' on-change='valueChangedModel' if-empty='[ not set ]'
+
+    = leaf-panel simple-header=true title='Editable value w/ model' icon='fa fa-leaf'
+      .panel-body
+        = leaf-editable-validated model=myModel on-change='valueChangedModel' if-empty='[ not set ]'
+
+
+.row
+  .col-md-6
+    = leaf-panel simple-header=true title='Editable Number' icon='fa fa-leaf'
+      .panel-body
+        = leaf-editable-number value=myNumberValue on-change='numberChanged' integer=true lt=1000 gt=10 allowBlank=false
+
+  .col-md-6
+    = leaf-panel simple-header=true title='Editable Text' icon='fa fa-leaf'
+      .panel-body
+        = leaf-editable-text value=myTextValue on-change='textChanged' min-length=4 maxlength=12 format=textFormat format-msg="Format is \w+, no spaces"
+
+
+
+.row
+  .col-md-6
+    = leaf-panel simple-header=true title='One way Value' icon='fa fa-leaf'
+      .panel-body
+        .row
+          .col-md-12
+            p = input value=tempValue
+          .col-md-12
+            p = leaf-editable-text value=tempValue on-change='tempChanged' min-length=2 max-length=15
+
+  .col-md-6
+    = leaf-panel simple-header=true title='Nested Values' icon='fa fa-leaf'
+      .panel-body
+        = leaf-editable-validated model=myPathModel property='foo.bar' on-change='valueChangedModel' if-empty='[ not set ]'

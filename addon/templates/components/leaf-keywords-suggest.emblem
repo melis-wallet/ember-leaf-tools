@@ -1,0 +1,4 @@
+
+= each suggestions as |s|
+  li.suggestion click="'addSuggestion' s" class="{{if (eq s current) 'active'}}"
+    = s

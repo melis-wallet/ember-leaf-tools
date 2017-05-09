@@ -1,0 +1,9 @@
+section.jumbotron
+  .container
+    h1 Hello World
+    p This is a kitchen sink of all the Wm Elements for Ember
+    p
+      = link-to 'elements' class='btn btn-primary'
+        i.fa.fa-certificate
+        '
+        | Learn More

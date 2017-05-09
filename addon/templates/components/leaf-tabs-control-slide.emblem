@@ -1,0 +1,3 @@
+div.sly.frame.tab-frame class=type
+  ul.slidee.tab-slidee.nav.nav-tabs class="{{if simple 'nav-tabs-simple'}} {{classType}}"
+    = yield this

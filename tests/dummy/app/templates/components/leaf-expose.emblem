@@ -1,0 +1,12 @@
+= leaf-panel class='raised'
+  = leaf-panel-header
+    = leaf-tabs-control simple=true size='xs' selected-idx=activetab as |ctrl|
+      = leaf-tab title='Example' icon='fa fa-cog' parent=ctrl idx='example'
+      = leaf-tab title='Documentation' icon='fa fa-code' parent=ctrl idx='doc'
+
+  .panel-body
+    = leaf-navs-content selected-idx=activetab bordered=false as |content|
+      = leaf-navs-panel parent=content idx='example'
+        = yield
+      = leaf-navs-panel parent=content idx='doc'
+        ' To be done

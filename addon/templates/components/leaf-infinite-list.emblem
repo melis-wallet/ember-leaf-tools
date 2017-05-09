@@ -1,0 +1,11 @@
+
+
+section.sly.frame
+  ul.list-group.slidee
+
+    = each activeElements as |active|
+      li.list-group-item id=active.id click="'selectItem' active"
+        = yield active
+  .scrollbar
+    .handle
+  .pagesbar

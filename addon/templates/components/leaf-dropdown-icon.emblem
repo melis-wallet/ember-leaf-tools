@@ -1,0 +1,7 @@
+a.dropdown-toggle data-toggle='dropdown' href='#'
+  if count
+    span.label.animated.flash
+      = count
+  i.nav-icon class=icon
+  span.small-screen-text = title
+= yield this

@@ -1,0 +1,9 @@
+.container-fluid
+  .row-fluid
+    .col-md-3
+      = partial 'sideindex'
+    .col-md-9
+      .page-header
+        = leaf-breadcrumbs
+      = leaf-expose
+        = outlet

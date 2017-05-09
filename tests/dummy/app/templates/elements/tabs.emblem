@@ -1,0 +1,46 @@
+.row
+  .col-md-6
+    = leaf-panel simple-header=true title='Tabs Dropdown' icon='fa fa-leaf'
+      .panel-body
+        = leaf-tabs-control selected-idx=sel1 as |ctrl|
+          = leaf-tab title='Home' icon='fa fa-home' parent=ctrl idx=1
+            = leaf-label content=12
+          = leaf-tab title='Profile' icon='fa fa-user' parent=ctrl idx=2
+
+          = leaf-tab title='Tab 2' icon='fa fa-user' parent=ctrl idx=3
+          = leaf-tab title='Tab 3' icon='fa fa-user' parent=ctrl idx=4
+          = leaf-tab title='Tab 4' icon='fa fa-user' parent=ctrl idx=5
+          = leaf-tab title='Yab 5' icon='fa fa-user' parent=ctrl idx=6
+          = leaf-tab title='Tab 6' icon='fa fa-user' parent=ctrl idx=7
+          = leaf-tab title='Tab 7' icon='fa fa-user' parent=ctrl idx=8
+
+        = leaf-navs-content selected-idx=sel1 bordered=true as |content|
+          = leaf-navs-panel parent=content idx=1
+            h6 Tab 1
+            p Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+          = leaf-navs-panel parent=content idx=2
+            h6 Tab 2
+            p Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.
+
+
+    = leaf-panel simple-header=true title='Tabs Slider' icon='fa fa-leaf'
+      .panel-body
+        = leaf-tabs-control-slide selected-idx=sel2 as |ctrl|
+          = leaf-tab title='Home' icon='fa fa-home' parent=ctrl idx=1
+            = leaf-label content=12
+          = leaf-tab title='Profile' icon='fa fa-user' parent=ctrl idx=2
+
+          = leaf-tab title='Tab 2' icon='fa fa-user' parent=ctrl idx=3
+          = leaf-tab title='Tabbbytab 3' icon='fa fa-user' parent=ctrl idx=4
+          = leaf-tab title='Tab Zoo 4' icon='fa fa-user' parent=ctrl idx=5
+          = leaf-tab title='Yabgiab 5' icon='fa fa-user' parent=ctrl idx=6
+          = leaf-tab title='Tab Misc 6' icon='fa fa-user' parent=ctrl idx=7
+          = leaf-tab title='Tab 7' icon='fa fa-user' parent=ctrl idx=8
+
+        = leaf-navs-content selected-idx=sel2 bordered=true as |content|
+          = leaf-navs-panel parent=content idx=1
+            h6 Tab 1
+            p Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+          = leaf-navs-panel parent=content idx=2
+            h6 Tab 2
+            p Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.

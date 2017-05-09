@@ -1,0 +1,79 @@
+//
+// Tools
+// --------------------------------------------------
+
+
+// ### Variables
+//@import 'leaf-variables';
+
+//@import "./basic";
+//@import "./list";
+//@import "./signin";
+
+
+$primary-color: #1d89cf;
+// move this into theming
+.theme-default {
+  // Sign In Page
+  &.page-signin .signin-info,
+  &.page-signup .signup-header {
+    background: $primary-color;
+    background: fade-out($primary-color, .2);
+  }
+}
+
+
+.editable-value {
+  .additional {
+    font-size: 10px;
+    display: inline-block;
+    color: #999;
+  }
+
+  span.value {
+    cursor: pointer;
+    display: inline-block;
+    border-bottom: 1px dashed $primary-color;
+  }
+
+  &.with-icon {
+    span.value {
+
+      &:after {
+        border-bottom: none;
+        font-family: FontAwesome;
+        content: '\f044';
+        display: inline-block;
+        color: $brand-primary;
+        right: -8px;
+        position: relative;
+        border-left: 1px solid #999;
+        padding-left: 8px;
+      }
+    }
+
+  }
+}
+
+
+.tab-frame {
+  width: 100%;
+  height: 34px;
+  padding: 0;
+  &.sm {
+    height: 31px;
+  }
+}
+
+.tab-frame .tab-slidee {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  list-style: none;
+}
+
+.tab-frame .tab-slidee li {
+  float: left;
+  padding: 0;
+  height: 100%;
+}

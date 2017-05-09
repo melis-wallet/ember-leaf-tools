@@ -1,0 +1,175 @@
+.taggle_list {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0px;
+
+
+  li {
+    float: left;
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: 500;
+    margin-bottom: 5px;
+
+  }
+
+  .taggle {
+    margin-right: 4px;
+    background: #e3e1df;
+    padding: 2px 8px;
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+    transition: all .3s;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+
+
+    .close {
+      //font-size: 1.1rem;
+      position: absolute;
+      top: 5px;
+      right: 3px;
+      text-decoration: none;
+      padding-left: 2px;
+      padding-top: 3px;
+      line-height: 0.5;
+      color: #ccc;
+      color: rgba(0, 0, 0, 0.2);
+      padding-bottom: 4px;
+      display: none;
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+
+    &:hover {
+      padding: 2px 16px 2px 8px;
+      background: #ccc;
+      transition: all .3s;
+
+    }
+
+    &:hover > .close {
+      display: block;
+
+    }
+
+    .close:hover {
+      color: #990033;
+
+    }
+  }
+
+  .taggle_hot {
+    background: #cac8c4;
+
+  }
+
+}
+
+.taggle_input {
+  border: none;
+  outline: none;
+  //font-size: 14px;
+  font-weight: 300;
+
+}
+
+.taggle_placeholder {
+  position: absolute;
+  color: #ccc;
+  top: 12px;
+  left: 8px;
+  transition: opacity, .25s;
+  user-select: none;
+
+}
+
+.taggle_input {
+  padding: 8px;
+  padding-left: 0;
+  float: left;
+  margin-top: -5px;
+  background: none;
+  width: 100%;
+  max-width: 100%;
+}
+
+.taggle_sizer {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: -500px;
+  z-index: -1;
+  visibility: hidden;
+}
+
+
+
+.kw-widget {
+
+    /*container styles*/
+  textarea.input,
+  .textarea.input {
+    border: 0;
+    background: #f4f4f4;
+    min-height: 60px;
+    padding: 8px;
+    //border-radius: 3px;
+    color: #555;
+    transition: all .25s;
+    cursor: text;
+    //margin-bottom: 10px;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+
+    &.valid {
+      border-bottom: 2px solid #88c05b;
+      transition: all .25s;
+    }
+  }
+
+
+  .textarea.input:focus,
+  .textarea.input.active,
+  textarea.input:focus,
+  textarea.input.active {
+    background: #f0f0f0;
+    transition: all .25s; }
+
+  .textarea.input,
+  textarea.input {
+    height: auto;
+  }
+
+
+  ul.suggestions {
+
+    li.suggestion {
+      border-radius: 2px;
+      display: inline-block;
+      padding: 2px 4px;
+      margin: 0 3px;
+      font-size: .8em;
+      color: #eee;
+      background: #88c05b;
+      //font-weight: bold;
+
+      &.active {
+        background: #73a24d;
+      }
+    }
+  }
+
+  &.has-feedback .form-control-feedback {
+    top: 8px;
+  }
+
+  .help-block:focus {
+    outline:none;
+    border-bottom: 3px solid #d0e6be;
+  }
+
+}

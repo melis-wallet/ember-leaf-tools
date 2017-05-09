@@ -1,0 +1,41 @@
+= if local-template
+  = yield currentValue displayedValue editing isValid displayedError
+= else
+  = if editing
+    = if additionalText
+      .additional
+        = additionalText
+    .form-group.no-margin-b class=displayedError:has-error
+      = if text-area
+        = textarea [
+          value=currentValue
+          autoresize=autoresize
+          focus-out='leaveEdit'
+          enter='leaveEditEnter'
+          autofocus=true
+          max-rows=10
+          class=fullInputClass tabindex='0']
+
+      = else
+        = input [
+          type=type
+          value=currentValue
+          autoresize=autoresize
+          focus-out='leaveEdit'
+          enter='leaveEdit'
+          autofocus=true
+          maxlength=maxlength
+          class=fullInputClass tabindex='0']
+
+      = if displayedError
+        span.help-block
+          = displayedError
+  = else
+    span.value click='clickedValue'
+      = if displayEmpty
+        = if-empty
+      = else if hasBlock
+        = yield currentValue displayedValue editing
+      = else
+        = displayedValue
+      | &nbsp;

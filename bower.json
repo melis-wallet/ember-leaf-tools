@@ -1,0 +1,14 @@
+{
+  "name": "ember-leaf-tools",
+  "dependencies": {
+    "ember": "~2.12.0",
+    "bootstrap-sass-official": "~3.3.6",
+    "font-awesome": "~4.7.0",
+    "animate.css": "~3.5.2",
+    "sly": "wmlele/sly#scroll-fix",
+    "dom-ruler": "0.2.4",
+    "blob-polyfill": "^1.0.20150320",
+    "clipboard": "^1.5.15",
+    "taggle": "^1.11.2"
+  }
+}

@@ -77,3 +77,84 @@ $primary-color: #1d89cf;
   padding: 0;
   height: 100%;
 }
+
+
+.leaf-tree {
+
+  /*
+  min-height:20px;
+  padding:19px;
+  margin-bottom:20px;
+  background-color:#fbfbfb;
+  border:1px solid #999;
+  border-radius:2px;
+  -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05)
+  */
+
+  li {
+      list-style-type:none;
+      margin:0;
+      padding:10px 5px 0 5px;
+      position:relative
+  }
+
+
+  li.deeplevel::before, li.deeplevel::after {
+      content:'';
+      left:-20px;
+      position:absolute;
+      right:auto;
+  }
+
+  li.deeplevel::before {
+      border-left:1px solid #999;
+      bottom:50px;
+      height:100%;
+      top:0;
+      width:1px;
+  }
+
+
+  li.deeplevel::after {
+      border-top:1px solid #999;
+      height:20px;
+      top:25px;
+      width:25px;
+  }
+
+  li .hdr {
+      //border:1px solid #999;
+      border-bottom: 1px solid #aaa;
+      border-radius:2px;
+      display:inline-block;
+      padding:3px 8px;
+      text-decoration:none;
+      background: #eee;
+
+    span {
+      margin-right: 4px;
+
+    }
+  }
+
+
+  li.parent_li>span {
+      cursor:pointer
+  }
+  &>ul>li::before, &>ul>li::after {
+      border:0
+  }
+  li:last-child::before {
+      height:30px
+  }
+
+  li.parent_li>span:hover, li.parent_li>span:hover+ul li span {
+      background:#eee;
+      border:1px solid #94a0b4;
+      color:#000
+  }
+
+
+}

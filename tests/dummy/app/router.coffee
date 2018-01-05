@@ -12,6 +12,7 @@ Router.map ->
     @route 'keywordinput'
     @route 'multiple-toggler'
     @route 'labels'
+    @route 'treeview'
 
 
 `export default Router`

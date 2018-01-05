@@ -1,0 +1,6 @@
+.row
+  .col-md-6
+    = leaf-panel simple-header=true title='Treeview' icon='fa fa-leaf'
+      .panel-body
+
+        = leaf-treeview tree=tree

@@ -1,0 +1,9 @@
+.hdr
+  span.toggle-icon
+    i class=primaryIcon click='toggleExpand'
+  span.selection-icon
+    i class=selectionIcon click='toggleSelect'
+
+  = model.title
+= if expanded
+  = leaf-tree-branch model=model tree=tree async=async

@@ -110,6 +110,10 @@
 
 .kw-widget {
 
+  &.disabled {
+    opacity: 0.4;
+  }
+
     /*container styles*/
   textarea.input,
   .textarea.input {

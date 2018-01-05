@@ -26,11 +26,12 @@ LeafKeywordsInput = Ember.Component.extend(
 
   valueAsString: ( ->  @get('value').join(' ')).property('value')
 
+  disabled: false
   active: true
   suggestActive: false
 
   classNames: ['kw-widget', 'form-group']
-  classNameBindings: ['active', 'has-error', 'has-feedback', 'has-success', 'valid']
+  classNameBindings: ['active', 'has-error', 'has-feedback', 'has-success', 'valid', 'disabled']
 
 
   'has-feedback': Ember.computed.notEmpty('error')
@@ -102,6 +103,14 @@ LeafKeywordsInput = Ember.Component.extend(
     @updateValue()
 
 
+  enableState: (->
+    if @get('disabled')
+      @deactivateSub()
+      @get('input')?.disable()
+    else
+      @get('input')?.enable()
+  ).observes('disabled')
+
   setup: ( ->
 
     { containerId,
@@ -160,6 +169,8 @@ LeafKeywordsInput = Ember.Component.extend(
 
   actions:
     addSuggestion: (tag) ->
+      return if @get('disabled')
+
       @insertTag(tag)
       @deactivateSub()
 

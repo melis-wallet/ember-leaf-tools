@@ -5,7 +5,7 @@
         = leaf-multiple-toggler options=keys value=currentKeys on-change=(action (mut currentKeys)) initalize=true class='btn-xs' icon='fa fa-list'
         hr
 
-        = leaf-keywords-input source=allKeys value=selectedKeys on-value-change='keysChanged' as | ki |
+        = leaf-keywords-input source=allKeys value=selectedKeys disabled=disabled on-value-change='keysChanged' as | ki |
           = leaf-keywords-suggest [
             suggestions=ki.firstSuggestions
             active=ki.suggestActive
@@ -14,4 +14,9 @@
             on-blur=(action 'suggestClosed' target=ki)
           ]
 
+        hr
+        .pull-right = leaf-switcher  checked=disabled theme='modern'
+        p disabled
+        hr
         = selectedKeys
+

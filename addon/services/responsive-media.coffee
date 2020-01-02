@@ -1,6 +1,10 @@
-`import Ember from 'ember'`
+import Service from '@ember/service'
+import { later } from '@ember/runloop'
+import { A } from '@ember/array'
+import { dasherize, classify } from '@ember/string'
+import { run } from '@ember/runloop'
 
-ResponsiveMediaService = Ember.Service.extend(
+ResponsiveMediaService = Service.extend(
 
 
   breakpoints:
@@ -18,21 +22,17 @@ ResponsiveMediaService = Ember.Service.extend(
 
   ).on('init')
 
-  matches: (->
-    Ember.A()
-  ).property()
+  matches: (-> A()).property()
 
   mql: window.matchMedia
 
   classNames: (->
-    dasherize = Ember.string.dasherize
     @get('matches').map( ->
       'media-' + dasherize(name)
     ).join(' ')
   ).property('matches.length')
 
   match: (name, query)->
-    classify = Ember.String.classify
     matcher =  (this.get('mql') || window.matchMedia)(query)
     isser = 'is' + classify(name)
 
@@ -49,7 +49,7 @@ ResponsiveMediaService = Ember.Service.extend(
 
     if(matcher.addListener)
       matcher.addListener( ->
-        Ember.run(null, listener, matcher)
+        run(null, listener, matcher)
       )
 
     listener(matcher)
@@ -57,4 +57,4 @@ ResponsiveMediaService = Ember.Service.extend(
 
 )
 
-`export default ResponsiveMediaService`
+export default ResponsiveMediaService

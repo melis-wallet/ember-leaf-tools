@@ -1,9 +1,9 @@
-`import Ember from 'ember'`
-`import StyleBody from 'ember-leaf-core/mixins/leaf-style-body'`
+import Route from '@ember/routing/route'
+import StyleBody from 'ember-leaf-core/mixins/leaf-style-body'
 
-ApplicationRoute = Ember.Route.extend(StyleBody,
+ApplicationRoute = Route.extend(StyleBody,
 
   classNames: ['theme-default']
 )
 
-`export default ApplicationRoute`
+export default ApplicationRoute

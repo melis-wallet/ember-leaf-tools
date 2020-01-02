@@ -1,2 +1,0 @@
-= each children as |child|
-  = leaf-tree-node model=child tree=this async=async

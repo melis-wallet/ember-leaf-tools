@@ -1,8 +1,9 @@
-`import Ember from 'ember'`
+import Service from '@ember/service'
+import { later } from '@ember/runloop'
 
 UPDATES_EVERY = 10000
 
-Clock = Ember.Service.extend(
+Clock = Service.extend(
   hours: null
   minutes: null
   seconds: null
@@ -20,9 +21,10 @@ Clock = Ember.Service.extend(
       seconds: now.getSeconds()
     )
 
-    Ember.run.later(this, (->
+    later(this, (->
       @tick()
     ), UPDATES_EVERY)
 
 )
-`export default Clock`
+
+export default Clock

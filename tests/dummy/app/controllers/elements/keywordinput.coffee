@@ -1,5 +1,6 @@
-`import Ember from 'ember'`
-`import wordlist_IT from '../../utils/wordlists/it'`
+import Controller from '@ember/controller'
+
+import wordlist_IT from '../../utils/wordlists/it'
 
 
 METAKEYS = [
@@ -11,7 +12,7 @@ METAKEYS = [
 ]
 
 
-KeywordInputController = Ember.Controller.extend(
+KeywordInputController = Controller.extend(
 
 
   keys: [
@@ -31,4 +32,5 @@ KeywordInputController = Ember.Controller.extend(
       console.log "Changed: ", string
 
 )
-`export default KeywordInputController`
+
+export default KeywordInputController

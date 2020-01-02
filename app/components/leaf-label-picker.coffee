@@ -1,3 +1,3 @@
 
-`import LabelPicker from 'ember-leaf-tools/components/leaf-label-picker'`
-`export default LabelPicker`
+import LabelPicker from 'ember-leaf-tools/components/leaf-label-picker'
+export default LabelPicker

@@ -1,10 +1,12 @@
-`import Ember from 'ember'`
-`import TypeSupport from 'ember-leaf-core/mixins/leaf-type-support'`
-`import TooltipSupport from 'ember-leaf-core/mixins/leaf-tooltip-support'`
-`import layout from 'ember-leaf-tools/templates/components/leaf-dropdown-icon'`
+import Component from '@ember/component'
+import { scheduleOnce } from "@ember/runloop"
+
+import TypeSupport from 'ember-leaf-core/mixins/leaf-type-support'
+import TooltipSupport from 'ember-leaf-core/mixins/leaf-tooltip-support'
+import layout from 'ember-leaf-tools/templates/components/leaf-dropdown-icon'
 
 
-LeafDropdownIcon = Ember.Component.extend(TypeSupport, TooltipSupport,
+LeafDropdownIcon = Component.extend(TypeSupport, TooltipSupport,
   layout: layout
 
   tagName: 'li'
@@ -18,7 +20,7 @@ LeafDropdownIcon = Ember.Component.extend(TypeSupport, TooltipSupport,
   shown: false
 
   stateHandler: (->
-    Ember.run.scheduleOnce 'afterRender', this, @_stateHandler
+    scheduleOnce 'afterRender', this, @_stateHandler
   ).on('didInsertElement')
 
 
@@ -32,4 +34,4 @@ LeafDropdownIcon = Ember.Component.extend(TypeSupport, TooltipSupport,
 
 )
 
-`export default LeafDropdownIcon`
+export default LeafDropdownIcon

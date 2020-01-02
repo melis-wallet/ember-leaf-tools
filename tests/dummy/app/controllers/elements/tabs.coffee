@@ -1,6 +1,5 @@
-`import Ember from 'ember'`
+import Controller from '@ember/controller'
 
-TabsController = Ember.Controller.extend(
+TabsController = Controller.extend()
 
-)
-`export default TabsController`
+export default TabsController

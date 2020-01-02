@@ -1,7 +1,7 @@
-`import Ember from 'ember'`
-`import StyleBindings from 'ember-leaf-core/mixins/leaf-style-bindings'`
+import Component from '@ember/component'
+import StyleBindings from 'ember-leaf-core/mixins/leaf-style-bindings'
 
-DropdownContainer = Ember.Component.extend(StyleBindings,
+DropdownContainer = Component.extend(StyleBindings,
 
   width: '200px'
 
@@ -11,4 +11,4 @@ DropdownContainer = Ember.Component.extend(StyleBindings,
   classNames: ['dropdown-menu', 'no-padding']
 )
 
-`export default DropdownContainer`
+export default DropdownContainer

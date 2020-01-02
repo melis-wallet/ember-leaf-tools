@@ -1,10 +1,14 @@
-`import Ember from 'ember'`
-`import HasChildren from 'ember-leaf-core/mixins/leaf-has-children'`
-`import HasSelectableChildren from 'ember-leaf-core/mixins/leaf-has-selectable-children'`
-`import SlyEnabled from 'ember-leaf-tools/mixins/sly-enabled'`
-`import layout from 'ember-leaf-tools/templates/components/leaf-tabs-control-slide'`
+import Component from '@ember/component'
+import { oneWay, notEmpty } from '@ember/object/computed'
+import { scheduleOnce, later } from '@ember/runloop'
 
-LeafTabsControlSlide = Ember.Component.extend(HasChildren, HasSelectableChildren, SlyEnabled,
+import HasChildren from 'ember-leaf-core/mixins/leaf-has-children'
+import HasSelectableChildren from 'ember-leaf-core/mixins/leaf-has-selectable-children'
+import SlyEnabled from 'ember-leaf-tools/mixins/sly-enabled'
+
+import layout from 'ember-leaf-tools/templates/components/leaf-tabs-control-slide'
+
+LeafTabsControlSlide = Component.extend(HasChildren, HasSelectableChildren, SlyEnabled,
   layout: layout
 
  # classNameBindings: ['simple:nav-tabs-simple', 'justified:nav-justified']
@@ -59,14 +63,11 @@ LeafTabsControlSlide = Ember.Component.extend(HasChildren, HasSelectableChildren
   #
   role: 'tablist',
 
-
   selectedChanged: ( ->
-    selected = @get('selected')
-
-    Ember.run.scheduleOnce 'afterRender', this, ->
-      @_slyFrame.activate(selected.get('element'))
+    scheduleOnce 'afterRender', this, ->
+      if (selected = @get('selected'))
+        @_slyFrame.activate(selected.get('element'))
   ).observes('selected')
-
 
 
   #
@@ -87,23 +88,23 @@ LeafTabsControlSlide = Ember.Component.extend(HasChildren, HasSelectableChildren
       when 39, 40 then @selectNextChild()
 
     event.preventDefault()
-    Ember.run.scheduleOnce('afterRender', this, @focusSelectedTab);
+    scheduleOnce('afterRender', this, @focusSelectedTab);
   ).on('keyDown')
 
-  resizeSlider: (-> Ember.run.later(this, @reloadSly, 500)).on('didInsertElement')
+  resizeSlider: (-> later(this, @reloadSly, 500)).on('didInsertElement')
 
   childUnregistered: ->
     @_super(arguments...)
     #console.error "tab unregistered"
     #@reloadSly()
-    Ember.run.later(this, @reloadSly, 200)
+    later(this, @reloadSly, 200)
 
   childRegistered: ->
     @_super(arguments...)
     #console.error "tab registered"
     #@reloadSly()
-    Ember.run.later(this, @reloadSly, 200)
+    later(this, @reloadSly, 200)
 
 )
 
-`export default LeafTabsControlSlide`
+export default LeafTabsControlSlide

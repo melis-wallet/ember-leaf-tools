@@ -1,19 +1,20 @@
-`import Ember from 'ember'`
+import EmberObject from '@ember/object'
+import Mixin from '@ember/object/mixin'
+import { alias } from '@ember/object/computed'
+import { assert } from '@ember/debug'
+import { isBlank, isNone } from '@ember/utils'
 
-Error = Ember.Object.extend(
-  unknownProperty: (property) ->
-    Ember.set(this, property, {})
-    return @get(property)
-)
 
-ValidationsHelper = Ember.Mixin.create
+Error = EmberObject.extend()
 
-  isValid: Ember.computed.alias('validations.isValid')
+ValidationsHelper = Mixin.create
+
+  isValid: alias('validations.isValid')
 
   init: ->
     @_super(arguments...)
 
-    Ember.assert('This mixin requires an object with validations', @get('validations'))
+    assert('This mixin requires an object with validations', @get('validations'))
 
     @set('errors', Error.create()) if !@get('errors')
     @get('validations.validatableAttributes')?.forEach((va) =>
@@ -25,7 +26,7 @@ ValidationsHelper = Ember.Mixin.create
     modelErrors = @get('errors')
 
     @get('validations').validate(arguments...).then((validations) =>
-      if !Ember.isNone(modelErrors) && Ember.canInvoke(modelErrors, 'add')
+      if !isNone(modelErrors) && Ember.canInvoke(modelErrors, 'add')
         @get('validations.validatableAttributes')?.forEach((va) => @_copyErrors(this, va))
       return validations
     )
@@ -45,6 +46,8 @@ ValidationsHelper = Ember.Mixin.create
     # i don't know how to handle nested validations
     if !attribute.includes('.')
       modelErrors.set(attribute, messages)
+    else
+      console.warn("[VALIDATION] nested attribute", attribute)
 
     #if (messages && messages.length > 0)
     #  messages.forEach((m) => modelErrors.set(attribute, m))
@@ -52,6 +55,6 @@ ValidationsHelper = Ember.Mixin.create
     #console.error "err", modelErrors
 
 
-`export default ValidationsHelper`
+export default ValidationsHelper
 
 

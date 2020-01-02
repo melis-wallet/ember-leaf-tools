@@ -1,7 +1,9 @@
-`import Ember from 'ember'`
-`import layout from 'ember-leaf-tools/templates/components/leaf-label-picker'`
+import Component from '@ember/component'
+import { isBlank  } from '@ember/utils'
 
-LabelPicker = Ember.Component.extend(
+import layout from 'ember-leaf-tools/templates/components/leaf-label-picker'
+
+LabelPicker = Component.extend(
   layout: layout
 
   classNames: ['form-group']
@@ -31,7 +33,7 @@ LabelPicker = Ember.Component.extend(
       @sendAction('on-finish', @get('selection'))
 
     createOnEnter: (select, e) ->
-      if ((e.keyCode == 13) && select.isOpen && !select.highlighted && !Ember.isBlank(select.searchText))
+      if ((e.keyCode == 13) && select.isOpen && !select.highlighted && !isBlank(select.searchText))
         selection = @get('selection')
         if (!selection.includes(select.searchText))
           this.get('newLabels').pushObject(select.searchText)
@@ -39,4 +41,4 @@ LabelPicker = Ember.Component.extend(
 
 )
 
-`export default LabelPicker`
+export default LabelPicker

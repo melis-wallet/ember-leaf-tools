@@ -1,6 +1,10 @@
-`import Ember from 'ember'`
+import Mixin from '@ember/object/mixin'
+import Evented from '@ember/object/evented'
+import EmberObject, { computed } from '@ember/object'
+import { scheduleOnce } from '@ember/runloop'
+import { isBlank, isNone } from '@ember/utils'
 
-SlyEnabled = Ember.Mixin.create(Ember.Evented,
+SlyEnabled = Mixin.create(Evented,
 
   #
   #
@@ -17,7 +21,7 @@ SlyEnabled = Ember.Mixin.create(Ember.Evented,
       dynamicHandle: true
     }
 
-  sly_options: Ember.computed -> Ember.Object.create(@sly_default_options)
+  sly_options: computed -> EmberObject.create(@sly_default_options)
 
 
   #
@@ -51,12 +55,12 @@ SlyEnabled = Ember.Mixin.create(Ember.Evented,
 
   initializeSly: (->
     if @get('shown')
-      Ember.run.scheduleOnce 'afterRender', this, @_initializeSly
+      scheduleOnce 'afterRender', this, @_initializeSly
   ).on('didInsertElement')
 
   refresh: (->
-    if @get('shown') && Ember.isBlank(@_slyFrame)
-      Ember.run.scheduleOnce 'afterRender', this, @_initializeSly
+    if @get('shown') && isBlank(@_slyFrame)
+      scheduleOnce 'afterRender', this, @_initializeSly
   ).observes('shown')
 
   _initializeSly: ->
@@ -98,7 +102,7 @@ SlyEnabled = Ember.Mixin.create(Ember.Evented,
     frame.init()
 
   reloadSly: (->
-    Ember.run.scheduleOnce 'afterRender', this, @_reloadSly
+    scheduleOnce 'afterRender', this, @_reloadSly
   ).observes('height')
 
   _slyResizeToHeight: (->
@@ -114,16 +118,16 @@ SlyEnabled = Ember.Mixin.create(Ember.Evented,
   _reloadSly: ->
     if @_slyFrame
       @_slyFrame.reload()
-  #    @_slyFrame.slideTo(0)
+
 
   slyResizeToHeight: ->
-    Ember.run.scheduleOnce 'afterRender', this, @_slyResizeToHeight
+    scheduleOnce 'afterRender', this, @_slyResizeToHeight
 
 
   slyContentChanged: ->
     @slyResizeToHeight()
     @reloadSly()
-    Ember.run.scheduleOnce 'afterRender', this, @_slideToEnd
+    scheduleOnce 'afterRender', this, @_slideToEnd
 
   _slideToEnd: ->
     @_slyFrame.toEnd() if @get('follow-bottom')
@@ -136,4 +140,4 @@ SlyEnabled = Ember.Mixin.create(Ember.Evented,
 
 )
 
-`export default SlyEnabled`
+export default SlyEnabled

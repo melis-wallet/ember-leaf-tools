@@ -1,5 +1,8 @@
-`import Ember from 'ember'`
-`import layout from 'ember-leaf-tools/templates/components/leaf-keywords-suggest'`
+import Component from '@ember/component'
+import { alias, empty } from '@ember/object/computed'
+import { scheduleOnce } from '@ember/runloop'
+
+import layout from 'ember-leaf-tools/templates/components/leaf-keywords-suggest'
 
 
 KEYS = {
@@ -16,7 +19,7 @@ KEYS = {
   COMMA: 188
 }
 
-LeafKeywordsSuggestions = Ember.Component.extend(
+LeafKeywordsSuggestions = Component.extend(
   layout: layout
 
 
@@ -35,7 +38,7 @@ LeafKeywordsSuggestions = Ember.Component.extend(
 
   role: 'listbox'
   ariaMultiselectable: 'false'
-  ariaExpanded: Ember.computed.alias('active')
+  ariaExpanded: alias('active')
 
   tabindex: 0
 
@@ -43,13 +46,13 @@ LeafKeywordsSuggestions = Ember.Component.extend(
   current: null
 
   active: false
-  hidden: Ember.computed.empty('suggestions')
+  hidden: empty('suggestions')
 
 
   onActivation: ( ->
     if @get('active')
       @set('current', @get('suggestions.firstObject'))
-      Ember.run.scheduleOnce('afterRender', this, ( -> @.$().focus()))
+      scheduleOnce('afterRender', this, ( -> @.$().focus()))
     else
       @set('current', null)
   ).observes('active', 'suggestions')
@@ -112,4 +115,4 @@ LeafKeywordsSuggestions = Ember.Component.extend(
 
 )
 
-`export default LeafKeywordsSuggestions`
+export default LeafKeywordsSuggestions

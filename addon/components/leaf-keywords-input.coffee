@@ -1,5 +1,12 @@
-`import Ember from 'ember'`
-`import layout from 'ember-leaf-tools/templates/components/leaf-keywords-input'`
+import Component from '@ember/component'
+import { computed } from '@ember/object'
+import { notEmpty } from '@ember/object/computed'
+import { A } from '@ember/array'
+import { get, set } from '@ember/object'
+import { isBlank, isNone } from '@ember/utils'
+import Scheduler from 'ember-leaf-tools/utils/scheduler'
+
+import layout from 'ember-leaf-tools/templates/components/leaf-keywords-input'
 
 KEYS = {
   BACKSPACE: 8
@@ -15,11 +22,15 @@ KEYS = {
   COMMA: 188
 }
 
-LeafKeywordsInput = Ember.Component.extend(
+LeafKeywordsInput = Component.extend(
   layout: layout
 
   source: []
   value: []
+
+  currentCount: 0
+  _scheduler: null
+  detectOffset: 25
 
   error: null
   valid: false
@@ -34,16 +45,16 @@ LeafKeywordsInput = Ember.Component.extend(
   classNameBindings: ['active', 'has-error', 'has-feedback', 'has-success', 'valid', 'disabled']
 
 
-  'has-feedback': Ember.computed.notEmpty('error')
-  'has-success': Ember.computed.not('has-error')
+  'has-feedback': notEmpty('error')
+  'has-success': computed.not('has-error')
 
   'has-error': ( ->
-    !Ember.isBlank(@get('error')) && !@get('hasSuggestions')
+    !isBlank(@get('error')) && !@get('hasSuggestions')
   ).property('error', 'hasSuggestions')
 
   placeholder: 'Enter keywords....'
 
-  hasSuggestions: Ember.computed.notEmpty('suggestions')
+  hasSuggestions: notEmpty('suggestions')
 
   containerId: ( ->
     @get('elementId') + '-input'
@@ -51,7 +62,7 @@ LeafKeywordsInput = Ember.Component.extend(
 
   updateValue: ( ->
     tags = @get('input').getTags()
-    values = @set('value', Ember.get(tags, 'values'))
+    values = @set('value', get(tags, 'values'))
     @sendAction('on-value-change', values, @get('valueAsString'))
   )
 
@@ -86,7 +97,7 @@ LeafKeywordsInput = Ember.Component.extend(
     @updateValue()
 
   insertTopSuggestion: (needle) ->
-    if (tag = @get('firstSuggestions.firstObject')) && !Ember.isBlank(needle)
+    if (tag = @get('firstSuggestions.firstObject')) && !isBlank(needle)
       @insertTag(tag)
 
   sourceHasChanged: ( -> @reset()).observes('source.[]')
@@ -136,8 +147,26 @@ LeafKeywordsInput = Ember.Component.extend(
       current = $(@).val()
       self.keyHandler(event, current)
     )
+
+    @set('_scheduler', Scheduler.create().schedule((=> @checkIfChanged() ), 2000))
   ).on('didInsertElement')
 
+  removeScheduler: ( ->
+
+    @get('_scheduler')?.stop()
+  ).on('willDestroyElement')
+
+
+  checkIfChanged: ->
+    val = @get('input').getInput().value
+    if (val?.length > (@currentCount + @detectOffset))
+      console.log('paste')
+      e = jQuery.Event("keydown")
+      e.which = KEYS.ENTER
+      $(@get('input').getInput()).trigger(e)
+      @get('input')._confirmValidTagEvent(e)
+
+    @set('currentCount', val.length)
 
   activateSub: ->
     if @get('active') && @get('hasSuggestions')
@@ -179,4 +208,4 @@ LeafKeywordsInput = Ember.Component.extend(
 
 )
 
-`export default LeafKeywordsInput`
+export default LeafKeywordsInput

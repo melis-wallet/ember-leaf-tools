@@ -1,8 +1,14 @@
-`import Ember from 'ember'`
-`import layout from 'ember-leaf-tools/templates/components/leaf-editable-value'`
+import Component from '@ember/component'
+import { oneWay, readOnly } from '@ember/object/computed'
+import { defineProperty } from '@ember/object'
+import { isBlank, isNone } from '@ember/utils'
+import { scheduleOnce, debounce } from '@ember/runloop'
 
+import layout from 'ember-leaf-tools/templates/components/leaf-editable-value'
 
-EditableValue = Ember.Component.extend(
+import Logger from 'ember-leaf-core/utils/logger'
+
+EditableValue = Component.extend(
   layout: layout
 
   classNames: ['editable-value']
@@ -52,11 +58,11 @@ EditableValue = Ember.Component.extend(
   ).property('inputError', 'errorMessage')
 
   displayEmpty: (->
-    Ember.isBlank(@get('currentValue')) && !Ember.isBlank(@get('if-empty'))
+    isBlank(@get('currentValue')) && !isBlank(@get('if-empty'))
   ).property('currentValue', 'if-empty')
 
   displayedValue: ( ->
-    if (emptyVal = @get('if-empty')) && Ember.isBlank(@get('currentValue'))
+    if (emptyVal = @get('if-empty')) && isBlank(@get('currentValue'))
       emptyVal
     else
       @get('currentValue')
@@ -87,13 +93,13 @@ EditableValue = Ember.Component.extend(
   #
   editingOn: (->
     if @get('editing')
-      Ember.run.scheduleOnce 'afterRender', this, (-> @.$('input').focus())
+      scheduleOnce 'afterRender', this, (-> @.$('input').focus())
   ).observes('editing')
 
   #
   #
   doneEdit: (value, newValue) ->
-    Ember.Logger.debug("- changed new: #{newValue}, old:  #{value}")
+    Logger.debug("- changed new: #{newValue}, old:  #{value}")
     @sendAction('on-change', newValue, @get('ident'))
     @resetValue()
 
@@ -105,8 +111,8 @@ EditableValue = Ember.Component.extend(
     if @get('isValid')
       value = @get('currentValue')
 
-      if (Ember.isNone(value) && !Ember.isBlank(oldValue)) || (!Ember.isNone(value) && (oldValue != value?.toString()))
-        Ember.run.debounce(this, @doneEdit, oldValue, value, 25, true)
+      if (isNone(value) && !isBlank(oldValue)) || (!isNone(value) && (oldValue != value?.toString()))
+        debounce(this, @doneEdit, oldValue, value, 25, true)
       @set('editing', false)
     else
       @setProperties
@@ -121,7 +127,7 @@ EditableValue = Ember.Component.extend(
   #
   #
   initValue: ->
-    Ember.defineProperty(this, 'currentValue', Ember.computed.oneWay('value'))
+    defineProperty(this, 'currentValue', oneWay('value'))
     @set('isValid', true)
 
   #
@@ -144,4 +150,4 @@ EditableValue = Ember.Component.extend(
 )
 
 
-`export default EditableValue`
+export default EditableValue

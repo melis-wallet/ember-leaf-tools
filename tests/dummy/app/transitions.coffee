@@ -20,4 +20,4 @@ Transitions = ->
   )
 
 
-`export default Transitions`
+export default Transitions

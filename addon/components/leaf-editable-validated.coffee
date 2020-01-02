@@ -1,5 +1,8 @@
-`import Ember from 'ember'`
-`import EditableValue from 'ember-leaf-tools/components/leaf-editable-value'`
+
+import { oneWay, readOnly, alias } from '@ember/object/computed'
+import { defineProperty } from '@ember/object'
+
+import EditableValue from 'ember-leaf-tools/components/leaf-editable-value'
 
 
 EditableValidated = EditableValue.extend(
@@ -14,14 +17,13 @@ EditableValidated = EditableValue.extend(
   #
   #
   doneEdit: (value, newValue) ->
-    Ember.Logger.debug("- changed new: #{newValue}, old:  #{value}")
     @sendAction('on-change', newValue, @get('ident'), @get('property'))
     @resetValue()
 
 
   resetValue: ->
     if !@get('model')
-      Ember.defineProperty(this, 'currentValue', Ember.computed.oneWay('value'))
+      defineProperty(this, 'currentValue', oneWay('value'))
       @set('isValid', true)
 
   #
@@ -31,13 +33,13 @@ EditableValidated = EditableValue.extend(
     if model = @get('model')
       property = @get('property')
 
-      Ember.defineProperty(this, 'currentValue', Ember.computed.alias("model.#{property}"))
-      Ember.defineProperty(this, 'isValid', Ember.computed.alias("model.validations.attrs.#{property}.isValid"))
-      Ember.defineProperty(this, 'errorMessage', Ember.computed.alias("model.validations.attrs.#{property}.message"))
+      defineProperty(this, 'currentValue', alias("model.#{property}"))
+      defineProperty(this, 'isValid',  alias("model.validations.attrs.#{property}.isValid"))
+      defineProperty(this, 'errorMessage', alias("model.validations.attrs.#{property}.message"))
     else
       @resetValue()
 
 )
 
 
-`export default EditableValidated`
+export default EditableValidated

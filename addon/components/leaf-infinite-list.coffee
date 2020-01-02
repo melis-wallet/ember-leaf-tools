@@ -1,11 +1,13 @@
-`import Ember from 'ember'`
-`import SlyEnabled from 'ember-leaf-tools/mixins/sly-enabled'`
-`import layout from 'ember-leaf-tools/templates/components/leaf-infinite-list'`
+import Component from '@ember/component'
+import { A } from '@ember/array'
 
-InfiniteList = Ember.Component.extend(SlyEnabled,
+import SlyEnabled from 'ember-leaf-tools/mixins/sly-enabled'
+import layout from 'ember-leaf-tools/templates/components/leaf-infinite-list'
+
+InfiniteList = Component.extend(SlyEnabled,
   layout: layout
 
-  ActiveElements: Ember.A()
+  ActiveElements: A()
 
   sly_default_options: {
       scrollBy: 3

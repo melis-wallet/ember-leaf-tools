@@ -1,6 +1,9 @@
-`import Ember from 'ember'`
-`import { validator, buildValidations } from 'ember-cp-validations'`
-`import ValidationsHelper from 'ember-leaf-tools/mixins/ember-cp-validations-helper'`
+import EmberObject from '@ember/object'
+import Controller from '@ember/controller'
+import { getOwner } from '@ember/application'
+
+import { validator, buildValidations } from 'ember-cp-validations'
+import ValidationsHelper from 'ember-leaf-tools/mixins/ember-cp-validations-helper'
 
 
 AnotherModelValidations = buildValidations(
@@ -11,7 +14,7 @@ AnotherModelValidations = buildValidations(
 )
 
 
-MyModel = Ember.Object.extend(AnotherModelValidations, ValidationsHelper,
+MyModel = EmberObject.extend(AnotherModelValidations, ValidationsHelper,
 
   value: 'hello'
 )
@@ -25,12 +28,12 @@ PathModelValidations = buildValidations(
 )
 
 
-PathModel = Ember.Object.extend(PathModelValidations, ValidationsHelper,
+PathModel = EmberObject.extend(PathModelValidations, ValidationsHelper,
 
   foo: null
 
   init: ->
-    @set('foo', Ember.Object.create(bar: 'foo.bar'))
+    @set('foo', EmberObject.create(bar: 'foo.bar'))
 )
 
 
@@ -42,7 +45,7 @@ ModelValidations = buildValidations(
   ]
 )
 
-EditValueController = Ember.Controller.extend(ModelValidations, ValidationsHelper,
+EditValueController = Controller.extend(ModelValidations, ValidationsHelper,
 
   myValue: 'foobar'
   myOtherValue: null
@@ -59,8 +62,8 @@ EditValueController = Ember.Controller.extend(ModelValidations, ValidationsHelpe
 
   init: ->
     @_super(arguments...)
-    @set 'myModel', MyModel.create(Ember.getOwner(this).ownerInjection())
-    @set 'myPathModel', PathModel.create(Ember.getOwner(this).ownerInjection())
+    @set 'myModel', MyModel.create(getOwner(this).ownerInjection())
+    @set 'myPathModel', PathModel.create(getOwner(this).ownerInjection())
 
   actions:
     valueChanged: (newvalue) ->
@@ -87,4 +90,5 @@ EditValueController = Ember.Controller.extend(ModelValidations, ValidationsHelpe
       console.log "New Value: ", newvalue
       @set 'tempValue', newvalue
 )
-`export default EditValueController`
+
+export default EditValueController

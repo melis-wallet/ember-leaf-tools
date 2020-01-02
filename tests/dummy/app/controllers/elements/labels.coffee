@@ -1,7 +1,7 @@
-`import Ember from 'ember'`
+import Controller from '@ember/controller'
+import { A } from '@ember/array'
 
-
-LabelsController = Ember.Controller.extend(
+LabelsController = Controller.extend(
 
   labels: [
     'foo'
@@ -9,11 +9,12 @@ LabelsController = Ember.Controller.extend(
     'baz'
   ]
 
-  selected: Ember.A()
+  selected: A()
 
   actions:
     fooBar: ->
       console.log "hellO"
 
 )
-`export default LabelsController`
+
+export default LabelsController

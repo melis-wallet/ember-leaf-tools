@@ -1,4 +1,4 @@
-`import StorageObject from 'ember-local-storage/local/object'`
+import StorageObject from 'ember-local-storage/local/object'
 
 AppState = StorageObject.extend()
 
@@ -10,4 +10,4 @@ AppState.reopenClass(
     }
 )
 
-`export default AppState`
+export default AppState

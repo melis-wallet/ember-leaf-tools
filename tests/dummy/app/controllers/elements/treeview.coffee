@@ -1,7 +1,8 @@
-`import Ember from 'ember'`
-`import TreeNode from 'ember-leaf-tools/utils/node'`
+import Controller from '@ember/controller'
 
-TreeviewController = Ember.Controller.extend(
+import TreeNode from 'ember-leaf-tools/utils/node'
+
+TreeviewController = Controller.extend(
 
 
   FIXTURES: [
@@ -36,4 +37,5 @@ TreeviewController = Ember.Controller.extend(
   ).property('FIXTURES')
 
 )
-`export default TreeviewController`
+
+export default TreeviewController

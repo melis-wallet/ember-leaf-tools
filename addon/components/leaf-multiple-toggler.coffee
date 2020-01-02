@@ -1,9 +1,11 @@
-`import Ember from 'ember'`
-`import layout from 'ember-leaf-tools/templates/components/leaf-multiple-toggler'`
-`import SizeSupport from 'ember-leaf-core/mixins/leaf-size-support'`
+import Component from '@ember/component'
+import { oneWay, notEmpty } from '@ember/object/computed'
+
+import SizeSupport from 'ember-leaf-core/mixins/leaf-size-support'
+import layout from 'ember-leaf-tools/templates/components/leaf-multiple-toggler'
 
 
-MultipleToggler = Ember.Component.extend(SizeSupport,
+MultipleToggler = Component.extend(SizeSupport,
   layout: layout
 
   dropdown: false
@@ -21,9 +23,9 @@ MultipleToggler = Ember.Component.extend(SizeSupport,
   options: []
   value: null
 
-  currentValue: Ember.computed.oneWay('value')
+  currentValue: oneWay('value')
 
-  labeled: Ember.computed.notEmpty('icon')
+  labeled: notEmpty('icon')
 
   initalize: false
 
@@ -54,4 +56,4 @@ MultipleToggler = Ember.Component.extend(SizeSupport,
 )
 
 
-`export default MultipleToggler`
+export default MultipleToggler

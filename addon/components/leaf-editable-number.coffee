@@ -1,18 +1,21 @@
-`import Ember from 'ember'`
-`import EditableValue from 'ember-leaf-tools/components/leaf-editable-value'`
-`import { validator, buildValidations } from 'ember-cp-validations'`
-`import ValidationsHelper from 'ember-leaf-tools/mixins/ember-cp-validations-helper'`
+
+import { oneWay, readOnly } from '@ember/object/computed'
+import { defineProperty } from '@ember/object'
+
+import EditableValue from 'ember-leaf-tools/components/leaf-editable-value'
+import { validator, buildValidations } from 'ember-cp-validations'
+import ValidationsHelper from 'ember-leaf-tools/mixins/ember-cp-validations-helper'
 
 
 Validations = buildValidations(
   currentValue: [
     validator('number',
       allowString: true
-      allowBlank: Ember.computed.readOnly('model.allowBlank')
-      integer: Ember.computed.readOnly('model.integer')
-      positive: Ember.computed.readOnly('model.positive')
-      lt: Ember.computed.readOnly('model.lt')
-      gt: Ember.computed.readOnly('model.gt')
+      allowBlank: readOnly('model.allowBlank')
+      integer: readOnly('model.integer')
+      positive: readOnly('model.positive')
+      lt: readOnly('model.lt')
+      gt: readOnly('model.gt')
     )
   ]
 )
@@ -32,10 +35,10 @@ EditableNumber = EditableValue.extend(Validations, ValidationsHelper,
   #
   #
   initValue: ->
-    Ember.defineProperty(this, 'currentValue', Ember.computed.oneWay('value'))
-    Ember.defineProperty(this, 'errorMessage', Ember.computed.readOnly("validations.attrs.currentValue.message"))
+    defineProperty(this, 'currentValue', oneWay('value'))
+    defineProperty(this, 'errorMessage', readOnly("validations.attrs.currentValue.message"))
 
 )
 
 
-`export default EditableNumber`
+export default EditableNumber

@@ -1,7 +1,7 @@
-`import Ember from 'ember'`
-`import config from './config/environment'`
+import EmberRouter from '@ember/routing/router'
+import config from './config/environment'
 
-Router = Ember.Router.extend(
+Router = EmberRouter.extend(
   location: config.locationType
 )
 
@@ -15,4 +15,4 @@ Router.map ->
     @route 'treeview'
 
 
-`export default Router`
+export default Router

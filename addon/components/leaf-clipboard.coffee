@@ -1,11 +1,18 @@
-`import Ember from 'ember'`
-`import TypeSupport from 'ember-leaf-core/mixins/leaf-type-support'`
-`import SizeSupport from 'ember-leaf-core/mixins/leaf-size-support'`
-`import TooltipSupport from 'ember-leaf-core/mixins/leaf-tooltip-support'`
-`import { storageFor } from 'ember-local-storage'`
-`import layout from 'ember-leaf-tools/templates/components/leaf-clipboard'`
+import Component from '@ember/component'
+import { alias } from '@ember/object/computed'
+import { bind } from "@ember/runloop"
 
-LeafClipboard = Ember.Component.extend(TypeSupport, SizeSupport, TooltipSupport,
+import TypeSupport from 'ember-leaf-core/mixins/leaf-type-support'
+import SizeSupport from 'ember-leaf-core/mixins/leaf-size-support'
+import TooltipSupport from 'ember-leaf-core/mixins/leaf-tooltip-support'
+import { storageFor } from 'ember-local-storage'
+
+import Logger from 'ember-leaf-core/utils/logger'
+
+import layout from 'ember-leaf-tools/templates/components/leaf-clipboard'
+
+
+LeafClipboard = Component.extend(TypeSupport, SizeSupport, TooltipSupport,
   layout: layout
 
   tagName: 'button'
@@ -31,7 +38,7 @@ LeafClipboard = Ember.Component.extend(TypeSupport, SizeSupport, TooltipSupport,
   native: true
 
   appstate: storageFor('leaf-app-state')
-  appClip: Ember.computed.alias('appstate.clipboard')
+  appClip: alias('appstate.clipboard')
 
   clipboardEvents: ['success', 'error']
 
@@ -59,12 +66,12 @@ LeafClipboard = Ember.Component.extend(TypeSupport, SizeSupport, TooltipSupport,
     @set('clipboard', clipboard)
 
     @get('clipboardEvents').forEach((action) =>
-      clipboard.on(action, Ember.run.bind(this, (e) ->
+      clipboard.on(action, bind(this, (e) ->
         try
           @trigger(action)
           @sendAction(action, e)
         catch error
-          Ember.Logger.debug(error.message)
+          Logger.debug(error.message)
       ))
     )
 
@@ -85,4 +92,4 @@ LeafClipboard = Ember.Component.extend(TypeSupport, SizeSupport, TooltipSupport,
   ).on('willDestroyElement')
 )
 
-`export default LeafClipboard`
+export default LeafClipboard

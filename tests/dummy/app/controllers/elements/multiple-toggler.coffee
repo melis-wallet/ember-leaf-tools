@@ -1,8 +1,8 @@
-`import Ember from 'ember'`
-`import wordlist_IT from '../../utils/wordlists/it'`
+import Controller from '@ember/controller'
+import wordlist_IT from '../../utils/wordlists/it'
 
 
-MultipleToggler = Ember.Controller.extend(
+MultipleToggler = Controller.extend(
 
   options: [
     {value: 'one', label: 'one', icon: 'fa fa-code'}
@@ -22,4 +22,5 @@ MultipleToggler = Ember.Controller.extend(
   selectedLabels: null
 
 )
-`export default MultipleToggler`
+
+export default MultipleToggler

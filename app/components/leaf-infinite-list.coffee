@@ -1,3 +1,3 @@
 
-`import InfiniteList from 'ember-leaf-tools/components/infinite-list'`
-`export default InfiniteList`
+import InfiniteList from 'ember-leaf-tools/components/infinite-list'
+export default InfiniteList

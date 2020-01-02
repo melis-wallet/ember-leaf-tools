@@ -1,10 +1,12 @@
+import Service, { inject as service } from '@ember/service'
+import { alias } from '@ember/object/computed'
 
-`import Ember from 'ember'`
-`import { storageFor } from 'ember-local-storage'`
+import { storageFor } from 'ember-local-storage'
 
-AppStateService = Ember.Service.extend(
 
-  media: Ember.inject.service('responsive-media')
+AppStateService = Service.extend(
+
+  media: service('responsive-media')
 
   store: storageFor('leaf-app-state')
 
@@ -16,7 +18,7 @@ AppStateService = Ember.Service.extend(
   #
   # the main menu is currently expanded
   #
-  menuExpanded: Ember.computed.alias('store.menuExpanded')
+  menuExpanded: alias('store.menuExpanded')
 
   #
   # menu is fixed or scrolling
@@ -32,7 +34,7 @@ AppStateService = Ember.Service.extend(
   #
   #
   #
-  mediaHasChanged: (->
+  mediaHasChanged: ( ->
     if (@get('media.isMobile') || @get('media.isTablet'))
       @set('menuExpanded', false)
     else
@@ -40,11 +42,12 @@ AppStateService = Ember.Service.extend(
   ).observes('media.isMobile', 'media.isTablet').on('init')
 
 
-  routingStateChanged:(->
+  routingStateChanged:( ->
     if (@get('media.isMobile'))
       @set('menuExpanded', false)
   )
 
 
 )
-`export default AppStateService`
+
+export default AppStateService

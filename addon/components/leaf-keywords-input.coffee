@@ -148,7 +148,9 @@ LeafKeywordsInput = Component.extend(
       self.keyHandler(event, current)
     )
 
-    @set('_scheduler', Scheduler.create().schedule((=> @checkIfChanged() ), 2000))
+    sched =  Scheduler.create()
+    sched.schedule((=> @checkIfChanged() ), 2000)
+    @set('_scheduler', sched) 
   ).on('didInsertElement')
 
   removeScheduler: ( ->

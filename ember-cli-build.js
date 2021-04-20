@@ -6,7 +6,14 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     // Add options here
-    sassOptions: {outputFile: 'dummy.css'}
+    sassOptions: {implementation: require("node-sass"), outputFile: 'dummy.css'},
+
+    'ember-bootstrap': {
+      bootstrapVersion: 3,
+      importBootstrapFont: false,
+      importBootstrapCSS: false,
+      whitelist: ['bs-collapse', 'bs-dropdown', 'bs-carousel']
+    }
   });
 
 

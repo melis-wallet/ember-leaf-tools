@@ -15,7 +15,7 @@ module.exports = {
   name: 'ember-leaf-tools',
 
   included: function( app, parentAddon ) {
-    this._super.included(app);
+    this._super.included.apply(this, arguments);
 
     var target = (parentAddon || app);
 

@@ -8,8 +8,8 @@
   = power-select-multiple [
     options=allLabels
     selected=selection
-    onchange=(action (mut selection))
-    onblur=(action 'lostFocus')
-    onfocus=(action 'gotFocus')
+    onChange=(action (mut selection))
+    onBlur=(action 'lostFocus')
+    onFocus=(action 'gotFocus')
   ] as |label|
     = label

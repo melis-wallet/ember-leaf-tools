@@ -81,7 +81,7 @@
   "dependencies": {
     "balloon-css": "^1.2.0",
     "bootstrap-sass": "^3.4.1",
-    "node-sass": "^5.0.0",        
+    "node-sass": "^7.0.0",        
     "broccoli-merge-trees": "^4.2.0",
     "ember-cli-babel": "^7.23.1",
     "ember-cli-coffeescript": "jakesjews/ember-cli-coffeescript",
